@@ -55,16 +55,29 @@ public class ImageService {
             if (images == null) {
                 return "404";
             }
-            //获取Calendar对象，并设置为2020年1月1日
+            //临时换回原先算法
+            //获取Calendar对象
+            Calendar calendar = Calendar.getInstance();
+            //获取今天在一年中的数字
+            int day = calendar.get(Calendar.DAY_OF_YEAR);
+            //根据今天的日期获取今日图片
+            int index = (day % images.size());
+            //获取随机的图片地址
+            return images.get(index);
+
+            //新算法出bug 以后再修
+            /*//获取Calendar对象，并设置为2020年1月1日
             Calendar begin = Calendar.getInstance();
             begin.set(2020, Calendar.JANUARY, 1);
             //获取Calendar对象，计算今天日期到2020年1月1日之间相差多少天
+            System.out.println(begin.getTime());
             Calendar today = Calendar.getInstance();
+            System.out.println(today.getTime());
             int day = (int) (today.getTimeInMillis() - begin.getTimeInMillis()) / (24 * 60 * 60 * 1000);
             //根据今天的日期获取今日图片
             int index = (day % images.size());
             //获取今日随机的图片地址
-            return images.get(index);
+            return images.get(index);*/
         }
     }
 }
